@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.7
-Release: 2
+Release: 4
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
@@ -15,6 +15,7 @@ BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 Summary: Development files for the LibMNG library.
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Requires: libjpeg-devel
 
 %package static
 Summary: A statically linked version of the LibMNG library.
@@ -72,6 +73,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Mon Jul 19 2004 Matthias Clasen <mclasen@redhat.com> 1.0.7-4
+- Add missing Requires
+
 * Tue Jun 15 2004 Elliot Lee <sopwith@redhat.com>
 - rebuilt
 
