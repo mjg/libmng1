@@ -1,6 +1,6 @@
 Name: libmng
-Version: 1.0.3
-Release: 5
+Version: 1.0.4
+Release: 1
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
@@ -59,19 +59,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{prefix}/lib/*.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-,root,root)
-%{prefix}/lib/*.la
-%{prefix}/lib/*.so
-%{prefix}/include/*
+%{_libdir}/*.la
+%{_libdir}/*.so
+%{_includedir}/*
 
 %files static
 %defattr(-,root,root)
-%{prefix}/lib/*.a
+%{_libdir}/*.a
 
 %changelog
+* Mon Jun 24 2002 Bernhard Rosenkraenzer <bero@redhat.com> 1.0.4-1
+- 1.0.4
+
 * Fri Jun 21 2002 Tim Powers <timp@redhat.com>
 - automated rebuild
 
