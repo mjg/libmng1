@@ -1,8 +1,8 @@
 Name: libmng
-Version: 1.0.1
-Release: 2
+Version: 1.0.2
+Release: 1
 URL: http://www.libmng.com/
-Summary: Library for supporting MNG (Animated PNG) graphics
+Summary: A library which supports MNG graphics.
 License: BSD-like
 Source: http://www.libmng.com/download/%{name}-%{version}.tar.bz2
 Group: System Environment/Libraries
@@ -12,40 +12,31 @@ Requires: zlib, libjpeg
 BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 
 %package devel
-Summary: Development files for the MNG (Animated PNG) library
+Summary: Development files for the LibMNG library.
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
 %package static
-Summary: MNG (Animated PNG) library for static linking
+Summary: A statically linked version of the LibMNG library.
 Group: Development/Libraries
 
 %description
-LibMNG is a library for accessing graphics in the MNG (Multi-image
-Network Graphics, basically animated PNG) and JNG (JPEG Network Graphics,
-basically JPEG streams integrated in a PNG chunk) formats.
+LibMNG is a library for accessing graphics in MNG (Multi-image Network
+Graphics) and JNG (JPEG Network Graphics) formats.  MNG graphics are
+basically animated PNGs.  JNG graphics are basically JPEG streams
+integrated into a PNG chunk.
 
 %description devel
-Development (Header) files for the LibMNG library.
-
-LibMNG is a library for accessing graphics in the MNG (Multi-image
-Network Graphics, basically animated PNG) and JNG (JPEG Network Graphics,
-basically JPEG streams integrated in a PNG chunk) formats.
-
-Install %{name}-devel if you wish to develop or compile applications
-using MNG graphics.
+LibMNG is a library for accessing MNG and JNG format graphics.  The
+libmng-devel package contains files needed for developing or compiling
+applications which use MNG graphics.
 
 %description static
-A version of the LibMNG library for linking statically.
-
-LibMNG is a library for accessing graphics in the MNG (Multi-image
-Network Graphics, basically animated PNG) and JNG (JPEG Network Graphics,
-basically JPEG streams integrated in a PNG chunk) formats.
-
-Install %{name}-devel if you wish to develop or compile applications
-using MNG graphics without depending on libmng being installed on the
-user's system.
-
+LibMNG is a library for accessing MNG and JNG format graphics.  The
+libmng-static package contains a statically linked version of the
+LibMNG library, which you need if you want to develop or compile
+applications using MNG graphics without depending upon LibMNG being
+installed on the user's system.
 
 %prep
 %setup
@@ -81,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/*.a
 
 %changelog
+* Tue Jul 31 2001 Bernhard Rosenkraenzer <bero@redhat.com> 1.0.2-1
+- Update to 1.0.2 (bugfix release - fixes a memory leak and file corruption)
+
 * Wed Jun 20 2001 Than Ngo <rtthan@redhat.com> 1.0.1-2
 - requires %%{name} = %%{version}
 
