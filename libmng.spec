@@ -40,6 +40,7 @@ installed on the user's system.
 %setup -q
 
 %build
+cat unmaintained/autogen.sh | tr -d \\r > autogen.sh
 chmod 755 autogen.sh
 [ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
 %configure --enable-shared --enable-static --with-zlib --with-jpeg \
@@ -74,6 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Mar  2 2005 Matthias Clasen <mclasen@redhat.com> 1.0.9-1
 - Update to 1.0.9
+- Work around autogen.sh brokenness
 
 * Fri Feb 11 2005 Matthias Clasen <mclasen@redhat.com> 1.0.8-2
 - Remove .la files (#145970)
