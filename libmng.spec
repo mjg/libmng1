@@ -1,6 +1,6 @@
 Name: libmng
-Version: 1.0.8
-Release: 2
+Version: 1.0.9
+Release: 1
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
@@ -72,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Wed Mar  2 2005 Matthias Clasen <mclasen@redhat.com> 1.0.9-1
+- Update to 1.0.9
+
 * Fri Feb 11 2005 Matthias Clasen <mclasen@redhat.com> 1.0.8-2
 - Remove .la files (#145970)
 - Remove some unneeded Requires
