@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.4
-Release: 1
+Release: 3
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
@@ -45,7 +45,7 @@ installed on the user's system.
 [ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
 %configure --enable-shared --enable-static --with-zlib --with-jpeg \
 	--with-gnu-ld
-make
+make %{?_smp_mflags}
 
 %install
 %makeinstall
@@ -72,6 +72,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Wed Jan 22 2003 Tim Powers <timp@redhat.com>
+- rebuilt
+
+* Fri Dec 13 2002 Elliot Lee <sopwith@redhat.com> 1.0.4-2
+- Rebuild, _smp_mflags
+
 * Mon Jun 24 2002 Bernhard Rosenkraenzer <bero@redhat.com> 1.0.4-1
 - 1.0.4
 
