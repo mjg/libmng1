@@ -67,6 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so
 %{_includedir}/*
+%{_mandir}/man3
+%{_mandir}/man5
 
 %files static
 %defattr(-,root,root)
