@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.4
-Release: 4
+Release: 5.1
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
@@ -72,6 +72,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Tue Mar 02 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
 * Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
 - rebuilt
 
