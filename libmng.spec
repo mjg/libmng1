@@ -1,20 +1,23 @@
 Name: libmng
-Version: 0.9.2
-Release: 1tc1
+Version: 1.0.0
+Release: 2
 URL: http://www.libmng.com/
 Summary: Library for supporting MNG (Animated PNG) graphics
 License: BSD-like
-Distribution: BlueSky
-Packager: RedHat
-Source: http://www.libmng.com/%{name}-%{version}.tar.bz2
+Source: http://www.libmng.com/download/%{name}-%{version}.tar.bz2
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-root
 Prefix: %{_prefix}
 Requires: zlib, libjpeg
-BuildPrereq: glibc-devel zlib-devel libjpeg-devel
+Provides: libmng.so.0
+BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 
 %package devel
 Summary: Development files for the MNG (Animated PNG) library
+Group: Development/Libraries
+
+%package static
+Summary: MNG (Animated PNG) library for static linking
 Group: Development/Libraries
 
 %description
@@ -32,20 +35,34 @@ basically JPEG streams integrated in a PNG chunk) formats.
 Install %{name}-devel if you wish to develop or compile applications
 using MNG graphics.
 
+%description static
+A version of the LibMNG library for linking statically.
+
+LibMNG is a library for accessing graphics in the MNG (Multi-image
+Network Graphics, basically animated PNG) and JNG (JPEG Network Graphics,
+basically JPEG streams integrated in a PNG chunk) formats.
+
+Install %{name}-devel if you wish to develop or compile applications
+using MNG graphics without depending on libmng being installed on the
+user's system.
+
+
 %prep
-%setup -n libmng-devel
-rm -rf makefile # Stupid name for a directory...
+%setup
 
 %build
 [ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
-%configure --enable-shared --with-zlib --with-jpeg
+%configure --enable-shared --enable-static --with-zlib --with-jpeg \
+	--with-gnu-ld
 make
 
 %install
 %makeinstall
 
-%post
-/sbin/ldconfig
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
@@ -59,12 +76,27 @@ make
 %{prefix}/lib/*.so
 %{prefix}/include/*
 
+%files static
+%defattr(-,root,root)
+%{prefix}/lib/*.a
+
 %changelog
-* Thu Oct 19 2000 Chih-Wei Huang <cwhuang@linux.org.tw>
-- remove static
+* Wed Feb 28 2001 Trond Eivind Glomsrød <teg@redhat.com>
+- remove bogus symlink trick
+
+* Mon Feb 26 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Update to 1.0.0 to make Qt 2.3.0 happy
+
+* Sat Jan 19 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 0.9.4, fixes MNG 1.0 spec compliance
+
+* Tue Dec 19 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 0.9.3
+- Add ldconfig calls in %%post and %%postun
+
+* Tue Dec 05 2000 Florian La Roche <Florian.LaRoche@redhat.de>
+- added a clean section to the spec file
 
 * Tue Sep 19 2000 Bernhard Rosenkraenzer <bero@redhat.com>
 - initial rpm
 
-%clean
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
