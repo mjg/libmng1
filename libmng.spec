@@ -1,20 +1,18 @@
 Name: libmng
 Version: 1.0.8
-Release: 1
+Release: 2
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
 Source: http://osdn.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Requires: zlib, libjpeg
 BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 
 %package devel
 Summary: Development files for the LibMNG library.
 Group: Development/Libraries
 Requires: %{name} = %{version}
-Requires: libjpeg-devel
 
 %package static
 Summary: A statically linked version of the LibMNG library.
@@ -51,6 +49,8 @@ make %{?_smp_mflags}
 %install
 %makeinstall
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -64,7 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root)
-%{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 
@@ -73,6 +72,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Fri Feb 11 2005 Matthias Clasen <mclasen@redhat.com> 1.0.8-2
+- Remove .la files (#145970)
+- Remove some unneeded Requires
+
 * Tue Oct 12 2004 Matthias Clasen <mclasen@redhat.com> 1.0.8-1
 - Upgrade to 1.0.8
 
