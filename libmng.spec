@@ -1,5 +1,5 @@
 Name: libmng
-Version: 1.0.0
+Version: 1.0.1
 Release: 2
 URL: http://www.libmng.com/
 Summary: Library for supporting MNG (Animated PNG) graphics
@@ -9,12 +9,12 @@ Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-root
 Prefix: %{_prefix}
 Requires: zlib, libjpeg
-Provides: libmng.so.0
 BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 
 %package devel
 Summary: Development files for the MNG (Animated PNG) library
 Group: Development/Libraries
+Requires: %{name} = %{version}
 
 %package static
 Summary: MNG (Animated PNG) library for static linking
@@ -81,6 +81,12 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/*.a
 
 %changelog
+* Wed Jun 20 2001 Than Ngo <rtthan@redhat.com> 1.0.1-2
+- requires %%{name} = %%{version}
+
+* Thu May  3 2001 Bernhard Rosenkraenzer <bero@redhat.com> 1.0.1-1
+- 1.0.1
+
 * Wed Feb 28 2001 Trond Eivind Glomsrød <teg@redhat.com>
 - remove bogus symlink trick
 
