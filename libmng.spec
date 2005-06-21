@@ -13,6 +13,8 @@ BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
 Summary: Development files for the LibMNG library.
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Requires: zlib-devel
+Requires: libjpeg-devel
 
 %package static
 Summary: A statically linked version of the LibMNG library.
@@ -75,6 +77,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Tue Jun 21 2005 Matthias Clasen <mclasen@redhat.com> 1.0.9-2
+- Add missing requires
+
 * Wed Mar  2 2005 Matthias Clasen <mclasen@redhat.com> 1.0.9-1
 - Update to 1.0.9
 - Work around autogen.sh brokenness
