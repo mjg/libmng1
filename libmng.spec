@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.9
-Release: 1
+Release: 2
 URL: http://www.libmng.com/
 Summary: A library which supports MNG graphics.
 License: BSD-like
