@@ -1,23 +1,24 @@
 Name: libmng
 Version: 1.0.9
-Release: 2
+Release: 3
 URL: http://www.libmng.com/
-Summary: A library which supports MNG graphics.
+Summary: Library for Multiple-image Network Graphics support
 License: BSD-like
-Source: http://osdn.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/libmng/%{name}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildPrereq: gcc glibc-devel zlib-devel libjpeg-devel
+BuildRequires: zlib-devel
+BuildRequires: libjpeg-devel
 
 %package devel
-Summary: Development files for the LibMNG library.
+Summary: Development files for the Multiple-image Network Graphics library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: zlib-devel
 Requires: libjpeg-devel
 
 %package static
-Summary: A statically linked version of the LibMNG library.
+Summary: Statically linked version of the Multiple-image Network Graphics library
 Group: Development/Libraries
 
 %description
@@ -51,7 +52,6 @@ make %{?_smp_mflags}
 
 %install
 %makeinstall
-
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
@@ -62,21 +62,26 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %{_libdir}/*.so
 %{_includedir}/*
-%{_mandir}/man3
-%{_mandir}/man5
+%{_mandir}/man3/*
+%{_mandir}/man5/*
 
 %files static
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %{_libdir}/*.a
 
 %changelog
+* Fri Nov 11 2005 Matthias Saou <http://freshrpms.net/> 1.0.9-3
+- Don't own entire man3 & man5 directories.
+- Summary updates.
+- Spec file cleanups.
+
 * Tue Jun 21 2005 Matthias Clasen <mclasen@redhat.com> 1.0.9-2
 - Add missing requires
 
