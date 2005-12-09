@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.9
-Release: 3
+Release: 3.1
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 License: BSD-like
@@ -77,6 +77,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+- rebuilt
+
 * Fri Nov 11 2005 Matthias Saou <http://freshrpms.net/> 1.0.9-3
 - Don't own entire man3 & man5 directories.
 - Summary updates.
