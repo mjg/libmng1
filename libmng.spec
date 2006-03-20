@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.9
-Release: 3.2.1
+Release: 4
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 License: BSD-like
@@ -9,6 +9,7 @@ Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
 BuildRequires: libjpeg-devel
+BuildRequires: lcms-devel
 
 %package devel
 Summary: Development files for the Multiple-image Network Graphics library
@@ -16,10 +17,6 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: zlib-devel
 Requires: libjpeg-devel
-
-%package static
-Summary: Statically linked version of the Multiple-image Network Graphics library
-Group: Development/Libraries
 
 %description
 LibMNG is a library for accessing graphics in MNG (Multi-image Network
@@ -32,13 +29,6 @@ LibMNG is a library for accessing MNG and JNG format graphics.  The
 libmng-devel package contains files needed for developing or compiling
 applications which use MNG graphics.
 
-%description static
-LibMNG is a library for accessing MNG and JNG format graphics.  The
-libmng-static package contains a statically linked version of the
-LibMNG library, which you need if you want to develop or compile
-applications using MNG graphics without depending upon LibMNG being
-installed on the user's system.
-
 %prep
 %setup -q
 
@@ -47,7 +37,7 @@ cat unmaintained/autogen.sh | tr -d \\r > autogen.sh
 chmod 755 autogen.sh
 [ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
 %configure --enable-shared --enable-static --with-zlib --with-jpeg \
-	--with-gnu-ld
+	--with-gnu-ld --with-lcms
 make %{?_smp_mflags}
 
 %install
@@ -72,11 +62,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_mandir}/man5/*
 
-%files static
-%defattr(-,root,root,0755)
-%{_libdir}/*.a
-
 %changelog
+* Mon Mar 20 2006 Matthias Clasen <mclasen@redhat.com> - 1.0.9-4
+- enable lcms support (#184526)
+- no longer build a libmng-static package
+
 * Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 1.0.9-3.2.1
 - bump again for double-long bug on ppc(64)
 
