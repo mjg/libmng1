@@ -36,7 +36,7 @@ applications which use MNG graphics.
 cat unmaintained/autogen.sh | tr -d \\r > autogen.sh
 chmod 755 autogen.sh
 [ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
-%configure --enable-shared --enable-static --with-zlib --with-jpeg \
+%configure --enable-shared --disable-static --with-zlib --with-jpeg \
 	--with-gnu-ld --with-lcms
 make %{?_smp_mflags}
 
