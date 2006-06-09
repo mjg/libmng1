@@ -10,6 +10,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
 BuildRequires: libjpeg-devel
 BuildRequires: lcms-devel
+BuildRequires: libtool
 
 %package devel
 Summary: Development files for the Multiple-image Network Graphics library
