@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.9
-Release: 4
+Release: 5
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 License: BSD-like
@@ -63,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Thu Jun  8 2006 Matthias Clasen <mclasen@redhat.com> - 1.0.9-5
+- Rebuild
+
 * Mon Mar 20 2006 Matthias Clasen <mclasen@redhat.com> - 1.0.9-4
 - enable lcms support (#184526)
 - no longer build a libmng-static package
