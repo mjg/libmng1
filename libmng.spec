@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.9
-Release: 5.1
+Release: 6.1
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 License: BSD-like
@@ -64,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.0.9-6.1
+- Autorebuild for GCC 4.3
+
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 1.0.9-5.1
 - rebuild
 
