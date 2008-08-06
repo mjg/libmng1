@@ -1,9 +1,10 @@
 Name: libmng
 Version: 1.0.9
-Release: 6.1
+Release: 7
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
-License: BSD-like
+# This is a common zlib variant.
+License: zlib
 Source: http://dl.sf.net/libmng/%{name}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -64,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Wed Aug  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.0.9-7
+- fix license tag
+
 * Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.0.9-6.1
 - Autorebuild for GCC 4.3
 
