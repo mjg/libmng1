@@ -1,11 +1,11 @@
 Name: libmng
-Version: 1.0.9
-Release: 8
+Version: 1.0.10
+Release: 1%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
 License: zlib
-Source: http://dl.sf.net/libmng/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sourceforge/libmng/%{name}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Mon Apr 13 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 1.0.10-1
+- update to 1.0.10
+
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.9-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
@@ -163,7 +166,7 @@ rm -rf $RPM_BUILD_ROOT
 * Thu May  3 2001 Bernhard Rosenkraenzer <bero@redhat.com> 1.0.1-1
 - 1.0.1
 
-* Wed Feb 28 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Wed Feb 28 2001 Trond Eivind GlomsrÃ¶d <teg@redhat.com>
 - remove bogus symlink trick
 
 * Mon Feb 26 2001 Bernhard Rosenkraenzer <bero@redhat.com>
@@ -181,4 +184,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Tue Sep 19 2000 Bernhard Rosenkraenzer <bero@redhat.com>
 - initial rpm
-
