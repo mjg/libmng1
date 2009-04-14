@@ -1,11 +1,11 @@
 Name: libmng
 Version: 1.0.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
 License: zlib
-Source: http://dl.sf.net/sourceforge/libmng/%{name}-%{version}.tar.gz
+Source0: http://download.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
@@ -43,6 +43,7 @@ chmod 755 autogen.sh
 make %{?_smp_mflags}
 
 %install
+rm -rf $RPM_BUILD_ROOT
 %makeinstall
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
@@ -55,16 +56,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,0755)
+%doc CHANGES LICENSE README*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-,root,root,0755)
+%doc doc/*
 %{_libdir}/*.so
 %{_includedir}/*
 %{_mandir}/man3/*
 %{_mandir}/man5/*
 
 %changelog
+* Tue Apr 14 2009 Jon Ciesla <limb@jcomserv.net> - 1.0.10-2
+- Fixed install, source url, added docs for Merge Review BZ 226033.
+
 * Mon Apr 13 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 1.0.10-1
 - update to 1.0.10
 
