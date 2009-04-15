@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.10
-Release: 2%{?dist}
+Release: 3%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -16,7 +16,7 @@ BuildRequires: libtool
 %package devel
 Summary: Development files for the Multiple-image Network Graphics library
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 Requires: zlib-devel
 Requires: libjpeg-devel
 
@@ -44,7 +44,7 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall
+make DESTDIR=$RPM_BUILD_ROOT install
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Wed Apr 15 2009 Jon Ciesla <limb@jcomserv.net> - 1.0.10-3
+- Fixed -devel requires and make install syntax.
+
 * Tue Apr 14 2009 Jon Ciesla <limb@jcomserv.net> - 1.0.10-2
 - Fixed install, source url, added docs for Merge Review BZ 226033.
 
