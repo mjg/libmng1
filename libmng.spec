@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.10
-Release: 6%{?dist}
+Release: 7%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
