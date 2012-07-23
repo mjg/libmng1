@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.10
-Release: 7%{?dist}
+Release: 8%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -12,6 +12,7 @@ BuildRequires: zlib-devel
 BuildRequires: libjpeg-devel
 BuildRequires: lcms-devel
 BuildRequires: libtool
+BuildRequires: autoconf
 
 %package devel
 Summary: Development files for the Multiple-image Network Graphics library
@@ -35,9 +36,10 @@ applications which use MNG graphics.
 %setup -q
 
 %build
-cat unmaintained/autogen.sh | tr -d \\r > autogen.sh
-chmod 755 autogen.sh
-[ ! -x ./configure ] && ./autogen.sh --help # generate, but don't run
+cp makefiles/configure.in .
+cp makefiles/Makefile.am .
+sed -i '/AM_C_PROTOTYPES/d' configure.in
+autoreconf -if
 %configure --enable-shared --disable-static --with-zlib --with-jpeg \
 	--with-gnu-ld --with-lcms
 make %{?_smp_mflags}
@@ -68,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Fri Jul 20 2012 Jon Ciesla <limburgher@gmail.com> - 1.0.10-8
+- Fix FTBFS.
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
