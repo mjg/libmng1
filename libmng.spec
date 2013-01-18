@@ -1,6 +1,6 @@
 Name: libmng
 Version: 1.0.10
-Release: 9%{?dist}
+Release: 10%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Fri Jan 18 2013 Adam Tkac <atkac redhat com> - 1.0.10-10
+- rebuild due to "jpeg8-ABI" feature drop
+
 * Fri Dec 21 2012 Adam Tkac <atkac redhat com> - 1.0.10-9
 - rebuild against new libjpeg
 
