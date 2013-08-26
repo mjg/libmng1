@@ -1,6 +1,6 @@
 Name: libmng
-Version: 1.0.10
-Release: 12%{?dist}
+Version: 2.0.2
+Release: 1%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -9,8 +9,8 @@ Source0: http://download.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
-BuildRequires: libjpeg-devel
-BuildRequires: lcms-devel
+BuildRequires: libjpeg-turbo-devel
+BuildRequires: lcms2-devel
 BuildRequires: libtool
 BuildRequires: autoconf
 
@@ -36,12 +36,12 @@ applications which use MNG graphics.
 %setup -q
 
 %build
-cp makefiles/configure.in .
+#cp makefiles/configure.in .
 cp makefiles/Makefile.am .
-sed -i '/AM_C_PROTOTYPES/d' configure.in
+#sed -i '/AM_C_PROTOTYPES/d' configure.in
 autoreconf -if
 %configure --enable-shared --disable-static --with-zlib --with-jpeg \
-	--with-gnu-ld --with-lcms
+	--with-gnu-ld --with-lcms2
 make %{?_smp_mflags}
 
 %install
@@ -68,8 +68,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_mandir}/man3/*
 %{_mandir}/man5/*
+%{_libdir}/pkgconfig/libmng.pc
 
 %changelog
+* Fri Aug 16 2013 Jon Ciesla <limburgher@gmail.com> - 2.0.2-1
+- 2.0.2, BZ 997816.
+- Fix bad changelog date.
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
@@ -210,7 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Feb 26 2001 Bernhard Rosenkraenzer <bero@redhat.com>
 - Update to 1.0.0 to make Qt 2.3.0 happy
 
-* Sat Jan 19 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+* Sat Jan 20 2001 Bernhard Rosenkraenzer <bero@redhat.com>
 - 0.9.4, fixes MNG 1.0 spec compliance
 
 * Tue Dec 19 2000 Bernhard Rosenkraenzer <bero@redhat.com>
