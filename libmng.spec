@@ -1,6 +1,6 @@
 Name: libmng
 Version: 2.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/libmng.pc
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Fri Aug 16 2013 Jon Ciesla <limburgher@gmail.com> - 2.0.2-1
 - 2.0.2, BZ 997816.
 - Fix bad changelog date.
