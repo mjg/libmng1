@@ -1,11 +1,12 @@
-Name: libmng
+Name: libmng1
+%global oname libmng
 Version: 1.0.10
-Release: 12%{?dist}
+Release: 13%{?dist}
 URL: http://www.libmng.com/
 Summary: Library for Multiple-image Network Graphics support
 # This is a common zlib variant.
 License: zlib
-Source0: http://download.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0: http://download.sourceforge.net/sourceforge/%{oname}/%{oname}-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: zlib-devel
@@ -33,7 +34,7 @@ libmng-devel package contains files needed for developing or compiling
 applications which use MNG graphics.
 
 %prep
-%setup -q
+%setup -q -n %{oname}-%{version}
 
 %build
 cp makefiles/configure.in .
@@ -70,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/*
 
 %changelog
+* Mon Jan 12 2015 Michael J Gruber <mjg@fedoraproject.org> - 1.0.10-13
+- Repackage as compatibility package libmng1
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
